@@ -1,0 +1,43 @@
+{% load menu %}
+<nav class="navbar is-info is-spaced has-shadow" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="{% url 'app:index' %}">
+      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+    </a>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      {% main_menu as items %}
+      {% for item in items %}
+      {% main_menu item.pk as subitems %}
+      {% if subitems %}<div class="navbar-item has-dropdown is-hoverable">{% endif %}
+      <a class="{% if subitems %}navbar-link{% else %}navbar-item{% endif %}" href="{% url 'app:category' pk=item.pk %}">
+        {{ item.title }}
+      </a>
+        <div class="navbar-dropdown">
+          {% if subitems %}
+          {% for subitem in subitems %}
+          <a class="navbar-item" href="{% url 'app:category' pk=subitem.pk %}">
+            {{ subitem.title }}
+          </a>
+
+          {% endfor %}
+          {% endif %}
+        </div>
+      {% if subitems %}</div>{% endif %}
+      {% endfor %}
+
+
+
+    </div>
+
+
+  </div>
+</nav>

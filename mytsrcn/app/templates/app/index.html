@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<div class="columns is-centered">
+    <div class="column is-12 has-text-centered">
+        {{ hello|safe }}
+    </div>
+</div>
+<div class="columns is-centered">
+    <div class="column is-6">
+        {{ intro|safe }}
+    </div>
+    <div class="column is-6">
+        <div>
+            {{ booking|safe }}
+        </div>
+        <div><a class="button is-info mt-2" href="">Электронная запись</a></div>
+    </div>
+</div>
+{% endblock %}
